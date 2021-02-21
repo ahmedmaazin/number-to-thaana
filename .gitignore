@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.env.backup
+.phpunit.result.cache
+
+/.vscode
+/.idea
+
+

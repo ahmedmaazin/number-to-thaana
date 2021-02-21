@@ -1,0 +1,13 @@
+{
+    "name": "ahmedmaazin/number-to-thaana",
+    "description": "Convert numbers to Thaana (Dhivehi) words.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mazin Ahmed",
+            "email": "ahmedmaazin@gmail.com"
+        }
+    ],
+    "require": {}
+}
