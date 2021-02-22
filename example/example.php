@@ -8,4 +8,5 @@ $input = 11;
 $numberToThaana = new NumberToThaana($input);
 $output = $numberToThaana->convert();
 
-var_dump($output);
+print_r("Input: " . $input . "\n");
+print_r("Output: " . $output . "\n");
