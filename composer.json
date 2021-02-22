@@ -9,5 +9,7 @@
             "email": "ahmedmaazin@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-mbstring": "*"
+    }
 }
