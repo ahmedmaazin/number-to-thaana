@@ -1,5 +1,7 @@
 <?php
 
+namespace Src;
+
 class NumberToThaana
 {
     /**
@@ -98,6 +100,8 @@ class NumberToThaana
                 return $this->ehbari[$dig] . $hundred . $this->thousandSub((string)$rem);
             }
         }
+
+        return "";
     }
 
     /**
