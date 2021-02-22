@@ -30,32 +30,51 @@ class NumberToThaana
     ];
 
     /**
-     * Badhalu.
+     * Number.
      *
-     * @param $number
-     * @return string
+     * @var string
      */
-    public function badhalu($number): string
+    private $number = "";
+
+    /**
+     * NumberToThaana constructor.
+     * @param string $number
+     */
+    public function __construct(string $number)
     {
-        $number = (int)$number;
+        $this->number = $number;
+    }
+
+    /**
+     * Convert.
+     *
+     * @return string|null
+     */
+    public function convert(): ?string
+    {
+        if (empty($this->number)) {
+            return null;
+        }
+
+        $number = (int)$this->number;
 
         if ($number < 1000) {
-            return $this->haasSub($number);
+            return $this->thousandSub($number);
         } else {
-            return $this->haasMathi($number);
+            return $this->thousandUp($number);
         }
     }
 
     /**
-     * Haas sub.
+     * Thousand sub.
      *
      * @param $number
      * @return string
      */
-    private function haasSub($number): string
+    private function thousandSub($number): string
     {
         $number = (int)$number;
-        $satheyka = "ސަތޭކަ ";
+        $hundred = "ސަތޭކަ ";
 
         if ($number <= 0 || $number <= 29) {
             return $this->ehbari[$number];
@@ -71,75 +90,68 @@ class NumberToThaana
 
             if ($dig == 2) {
                 $this->ehbari[2] = "ދުވި";
-                $satheyka = "ސައްތަ ";
+                $hundred = "ސައްތަ ";
             }
             if ($rem == 0) {
-                return $this->ehbari[$dig] . $satheyka;
+                return $this->ehbari[$dig] . $hundred;
             } else {
-                return $this->ehbari[$dig] . $satheyka . $this->haasSub((string)$rem);
+                return $this->ehbari[$dig] . $hundred . $this->thousandSub((string)$rem);
             }
         }
     }
 
     /**
-     * Haas buri.
+     * Thousand half.
      *
      * @param $number
      * @return array
      */
-    private function haasBuri($number): array
+    private function thousandHalf($number): array
     {
-        $arrHaas = [];
+        $thousandArray = [];
 
         while ($number != 0) {
-            $arrHaas[] = $number % 1000;
+            $thousandArray[] = $number % 1000;
             $number = round(floor($number / 1000), 0);
         }
 
-        return $arrHaas;
+        return $thousandArray;
     }
 
     /**
-     * Haas mathi.
+     * Thousand up.
      *
      * @param $number
      * @return string
      */
-    private function haasMathi($number): string
+    private function thousandUp($number): string
     {
         $number = (int)$number;
-        $arrZero = $this->haasBuri($number);
-        $lenArr = count($arrZero) - 1;
-        $resArr = [];
+        $thousandHalfArray = $this->thousandHalf($number);
+        $thousandHalfArrayLength = count($thousandHalfArray) - 1;
+        $responseArray = [];
 
-        foreach (array_reverse($arrZero) as $value) {
-            $wrd = $this->haasSub((string)$value) . " ";
-            $zap = $this->sunbari[$lenArr] . " ";
+        foreach (array_reverse($thousandHalfArray) as $value) {
+            $word = $this->thousandSub((string)$value) . " ";
+            $zap = $this->sunbari[$thousandHalfArrayLength] . " ";
 
-            if ($wrd == " ") {
+            if ($word == " ") {
                 break;
-            } else if ($wrd == "ސުން ") {
-                $wrd = "";
+            } else if ($word == "ސުން ") {
+                $word = "";
                 $zap = "";
             }
 
-            $resArr[] = $wrd . $zap;
-            $lenArr -= 1;
+            $responseArray[] = $word . $zap;
+            $thousandHalfArrayLength -= 1;
         }
 
-        $res = implode("", $resArr);
+        $response = implode("", $responseArray);
 
-        if ($res[-1] == ",") {
-            $res = $res[-1];
+        if ($response[-1] == ",") {
+            $response = $response[-1];
         }
 
-        return $res;
+        return $response;
     }
 }
-
-$input = "2500";
-$numberToThaana = new NumberToThaana();
-$output = $numberToThaana->badhalu($input);
-
-print_r("Input: " . $input . "\n");
-print_r("Output: " . html_entity_decode($output) . "\n");
