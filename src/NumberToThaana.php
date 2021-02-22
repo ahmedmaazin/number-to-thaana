@@ -146,7 +146,7 @@ class NumberToThaana
 
             if ($word == " ") {
                 break;
-            } else if ($word == "ސުން ") {
+            } else if ($word == "ސުން " || $word == "ސުމެއް ") {
                 $word = "";
                 $zap = "";
             }

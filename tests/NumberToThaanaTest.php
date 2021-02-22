@@ -15,7 +15,7 @@ class NumberToThaanaTest extends TestCase
         $this->assertNull($testOne);
         $this->assertNull($testTwo);
     }
-    
+
     public function testArgumentCases()
     {
         $testOne = is_string(null);
