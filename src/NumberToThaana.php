@@ -2,6 +2,11 @@
 
 namespace Mazin\Thaana;
 
+/**
+ * Class NumberToThaana.
+ *
+ * @package Mazin\Thaana
+ */
 class NumberToThaana
 {
     /**
