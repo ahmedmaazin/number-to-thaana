@@ -1,6 +1,12 @@
 {
   "name": "ahmedmaazin/number-to-thaana",
   "description": "Convert numbers to Thaana (Dhivehi) words.",
+  "keywords": [
+    "number",
+    "thaana",
+    "dhivehi",
+    "php"
+  ],
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -15,7 +21,9 @@
   },
   "autoload": {
     "psr-4": {
-      "Src\\": "src/"
+      "Mazin\\Thaana\\": "src/"
     }
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
